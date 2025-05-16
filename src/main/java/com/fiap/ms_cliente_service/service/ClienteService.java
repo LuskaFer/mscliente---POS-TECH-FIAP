@@ -38,6 +38,7 @@ public class ClienteService {
         cliente.setNome(atualizado.getNome());
         cliente.setCpf(atualizado.getCpf());
         cliente.setDataNascimento(atualizado.getDataNascimento());
+        cliente.setEmail(atualizado.getEmail());
         cliente.setRua(atualizado.getRua());
         cliente.setNumero(atualizado.getNumero());
         cliente.setCep(atualizado.getCep());

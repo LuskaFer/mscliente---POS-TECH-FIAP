@@ -18,9 +18,8 @@ public class Cliente {
 
     @Column(unique = true)
     private String cpf;
-
+    private String email;
     private String dataNascimento;
-
     private String rua;
     private String numero;
     private String cep;

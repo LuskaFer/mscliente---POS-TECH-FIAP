@@ -30,6 +30,7 @@ class ClienteServiceTest {
                 .nome("Lucas")
                 .cpf("123")
                 .dataNascimento("2000-01-01")
+                .email("teste@teste.com")
                 .rua("Rua A").numero("1").cep("00000-000")
                 .build();
 
