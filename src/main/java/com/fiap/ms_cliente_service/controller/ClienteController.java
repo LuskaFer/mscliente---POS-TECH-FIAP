@@ -32,6 +32,12 @@ public class ClienteController {
         return ResponseEntity.ok(service.buscarPorId(id));
     }
 
+    @GetMapping("/buscar")
+    public ResponseEntity<Cliente> buscarPorCpf(@RequestParam String cpf) {
+        return ResponseEntity.ok(service.buscarPorCpf(cpf));
+    }
+
+
     @PutMapping("/{id}")
     public ResponseEntity<Cliente> atualizar(@PathVariable Long id, @RequestBody Cliente clienteAtualizado) {
         return ResponseEntity.ok(service.atualizar(id, clienteAtualizado));

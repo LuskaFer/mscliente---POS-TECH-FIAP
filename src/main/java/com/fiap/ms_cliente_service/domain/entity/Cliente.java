@@ -1,5 +1,6 @@
 package com.fiap.ms_cliente_service.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,7 +21,9 @@ public class Cliente {
     private String cpf;
     private String email;
     private String dataNascimento;
-    private String rua;
-    private String numero;
-    private String cep;
+
+    @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private Endereco endereco;
+
 }
