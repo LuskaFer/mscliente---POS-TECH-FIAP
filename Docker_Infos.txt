@@ -1,0 +1,8 @@
+Docker Hub Image:
+https://hub.docker.com/r/luskafer/ms-cliente-service
+
+Pull Command:
+docker pull luskafer/ms-cliente-service:latest
+
+Run Command:
+docker run -p 8081:8081 luskafer/ms-cliente-service:latest

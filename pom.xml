@@ -15,12 +15,10 @@
     <artifactId>ms-cliente-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>ms-cliente-service</name>
-    <description>Microserviço de clientes feito com material da POS TECH da FIAP em Arquitetura em JAVA</description>
+    <description>Microserviço de clientes feito com material da POS TECH da FIAP</description>
 
     <properties>
         <java.version>21</java.version>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
     </properties>
 
     <dependencies>
@@ -36,7 +34,13 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
-        <!-- H2 Database -->
+        <!-- PostgreSQL -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+        </dependency>
+
+        <!-- H2 (test only) -->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
@@ -51,6 +55,12 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- Flyway -->
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+        </dependency>
+
         <!-- Testes -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -61,12 +71,14 @@
 
     <build>
         <plugins>
-            <!-- Compiler plugin com lombok versão explícita -->
+            <!-- Compiler com Lombok -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.11.0</version>
                 <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.projectlombok</groupId>
