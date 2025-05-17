@@ -13,7 +13,7 @@ services:
       - postgres
 
   postgres:
-    image: postgres:14
+    image: postgres:14.5
     container_name: mscliente-db
     ports:
       - "5432:5432"
