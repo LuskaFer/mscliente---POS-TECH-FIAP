@@ -18,8 +18,11 @@
     <description>Microserviço de clientes feito com material da POS TECH da FIAP</description>
 
     <properties>
-        <java.version>21</java.version>
+        <java.version>17</java.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
     </properties>
+
 
     <dependencies>
         <!-- Web -->
