@@ -1,207 +1,224 @@
 {
-  "info": {
-    "name": "ms-cliente-service",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-  },
-  "item": [
-    {
-      "name": "GET - Todos os Clientes",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "{{base_url}}/clientes",
-          "host": [
-            "{{base_url}}"
-          ],
-          "path": [
-            "clientes"
-          ]
-        }
-      }
-    },
-    {
-      "name": "GET - Cliente por ID",
-      "request": {
-        "method": "GET",
-        "url": {
-          "raw": "{{base_url}}/clientes/1",
-          "host": [
-            "{{base_url}}"
-          ],
-          "path": [
-            "clientes",
-            "1"
-          ]
-        }
-      }
-    },
-    {
-      "name": "GET - Cliente por CPF",
-      "request": {
-        "method": "GET",
-        "url": {
-          "raw": "{{base_url}}/clientes/cpf/12345678901",
-          "host": [
-            "{{base_url}}"
-          ],
-          "path": [
-            "clientes",
-            "cpf",
-            "12345678901"
-          ]
-        }
-      }
-    },
-    {
-      "name": "POST - Criar Cliente",
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n  \"nome\": \"Lucas Godoy\",\n  \"cpf\": \"12345678901\",\n  \"email\": \"lucas@fiap.com\",\n  \"dataNascimento\": \"2000-01-01\"\n}"
-        },
-        "url": {
-          "raw": "{{base_url}}/clientes",
-          "host": [
-            "{{base_url}}"
-          ],
-          "path": [
-            "clientes"
-          ]
-        }
-      }
-    },
-    {
-      "name": "PUT - Atualizar Cliente",
-      "request": {
-        "method": "PUT",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n  \"nome\": \"Lucas Godoy\",\n  \"cpf\": \"12345678901\",\n  \"email\": \"lucas.godoy@update.com\",\n  \"dataNascimento\": \"2000-01-01\"\n}"
-        },
-        "url": {
-          "raw": "{{base_url}}/clientes/1",
-          "host": [
-            "{{base_url}}"
-          ],
-          "path": [
-            "clientes",
-            "1"
-          ]
-        }
-      }
-    },
-    {
-      "name": "DELETE - Excluir Cliente",
-      "request": {
-        "method": "DELETE",
-        "url": {
-          "raw": "{{base_url}}/clientes/1",
-          "host": [
-            "{{base_url}}"
-          ],
-          "path": [
-            "clientes",
-            "1"
-          ]
-        }
-      }
-    },
-    {
-      "name": "GET - Pagamento por ClienteID",
-      "request": {
-        "method": "GET",
-        "url": {
-          "raw": "{{base_url}}/pagamentos/1",
-          "host": [
-            "{{base_url}}"
-          ],
-          "path": [
-            "pagamentos",
-            "1"
-          ]
-        }
-      }
-    },
-    {
-      "name": "POST - Criar Pagamento",
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n  \"numeroCartao\": \"1234123412341234\",\n  \"nomeTitular\": \"Titular\",\n  \"validade\": \"12/30\",\n  \"cvv\": \"123\",\n  \"clienteId\": 1\n}"
-        },
-        "url": {
-          "raw": "{{base_url}}/pagamentos",
-          "host": [
-            "{{base_url}}"
-          ],
-          "path": [
-            "pagamentos"
-          ]
-        }
-      }
-    },
-    {
-      "name": "PUT - Atualizar Pagamento",
-      "request": {
-        "method": "PUT",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n  \"numeroCartao\": \"1234123412341234\",\n  \"nomeTitular\": \"Titular Atualizado\",\n  \"validade\": \"12/30\",\n  \"cvv\": \"456\",\n  \"clienteId\": 1\n}"
-        },
-        "url": {
-          "raw": "{{base_url}}/pagamentos/1",
-          "host": [
-            "{{base_url}}"
-          ],
-          "path": [
-            "pagamentos",
-            "1"
-          ]
-        }
-      }
-    },
-    {
-      "name": "DELETE - Excluir Pagamento",
-      "request": {
-        "method": "DELETE",
-        "url": {
-          "raw": "{{base_url}}/pagamentos/1",
-          "host": [
-            "{{base_url}}"
-          ],
-          "path": [
-            "pagamentos",
-            "1"
-          ]
-        }
-      }
-    }
-  ]
+	"info": {
+		"_postman_id": "b4b7b6da-6cae-47ce-b59e-b0009dee351d",
+		"name": "ms-cliente-service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40913202"
+	},
+	"item": [
+		{
+			"name": "GET - Todos os Clientes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/clientes",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Cliente por ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/clientes/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"clientes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Cliente por CPF",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/clientes/cpf/12345678901",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"clientes",
+						"cpf",
+						"12345678901"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST - Criar Cliente",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"nome\": \"Lucas Godoy\",\n  \"cpf\": \"12345678901\",\n  \"email\": \"lucas@fiap.com\",\n  \"dataNascimento\": \"2000-01-01\",\n  \"endereco\": {\n    \"logradouro\": \"Rua A\",\n    \"numero\": \"123\",\n    \"complemento\": \"Apto 1\",\n    \"bairro\": \"Centro\",\n    \"cidade\": \"São Paulo\",\n    \"estado\": \"SP\",\n    \"cep\": \"12345678\"\n  }\n}\n"
+				},
+				"url": {
+					"raw": "{{base_url}}/clientes",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT - Atualizar Cliente",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"nome\": \"Lucas Godoy\",\n  \"cpf\": \"12345678901\",\n  \"email\": \"lucas.godoy@update.com\",\n  \"dataNascimento\": \"2000-01-01\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/clientes/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"clientes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE - Excluir Cliente",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/clientes/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"clientes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Pagamento por ClienteID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/pagamentos/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"pagamentos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST - Criar Pagamento",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"numeroCartao\": \"1234123412341234\",\n  \"nomeTitular\": \"Titular\",\n  \"validade\": \"12/30\",\n  \"cvv\": \"123\",\n  \"clienteId\": 1\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/pagamentos",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"pagamentos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT - Atualizar Pagamento",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"numeroCartao\": \"1234123412341234\",\n  \"nomeTitular\": \"Titular Atualizado\",\n  \"validade\": \"12/30\",\n  \"cvv\": \"456\",\n  \"clienteId\": 1\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/pagamentos/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"pagamentos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE - Excluir Pagamento",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/pagamentos/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"pagamentos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
 }

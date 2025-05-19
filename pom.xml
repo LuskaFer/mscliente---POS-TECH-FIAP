@@ -43,12 +43,12 @@
             <artifactId>postgresql</artifactId>
         </dependency>
 
-        <!-- H2 (test only) -->
+        <!-- H2 (test only)
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
-        </dependency>
+        </dependency>-->
 
         <!-- Lombok -->
         <dependency>

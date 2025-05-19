@@ -3,6 +3,7 @@ package com.fiap.mscliente.domain.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+@Getter
 @Data
 @Builder
 @AllArgsConstructor

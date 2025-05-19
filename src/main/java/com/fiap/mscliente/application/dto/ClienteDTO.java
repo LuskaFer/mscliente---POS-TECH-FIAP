@@ -14,5 +14,5 @@ public class ClienteDTO {
     private String cpf;
     private String email;
     private LocalDate dataNascimento;
-    private Endereco endereco;
+    private EnderecoDTO endereco;
 }
