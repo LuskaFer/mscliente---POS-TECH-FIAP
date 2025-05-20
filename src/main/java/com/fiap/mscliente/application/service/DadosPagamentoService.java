@@ -5,7 +5,6 @@ import com.fiap.mscliente.domain.repository.DadosPagamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import java.util.Optional;
 
 @Service
@@ -25,25 +24,29 @@ public class DadosPagamentoService {
     public ResponseEntity<DadosPagamento> buscarPorClienteId(Long clienteId) {
         return repository.findByClienteId(clienteId)
                 .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+                .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
     }
 
     public ResponseEntity<Void> excluir(Long id) {
-        Optional<DadosPagamento> existente = repository.findById(id);
-        if (existente.isPresent()) {
-            repository.deleteById(id);
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.notFound().build();
+        return repository.findById(id)
+                .map(existing -> {
+                    repository.delete(existing);
+                    return ResponseEntity.noContent().<Void>build(); // este <Void> resolve o erro de tipo
+                })
+                .orElseThrow(() -> new RuntimeException("Pagamento não encontrado"));
     }
 
-    public ResponseEntity<DadosPagamento> atualizar(Long id, DadosPagamento novo) {
-        return repository.findById(id).map(dp -> {
-            dp.setNomeTitular(novo.getNomeTitular());
-            dp.setNumeroCartao(novo.getNumeroCartao());
-            dp.setValidade(novo.getValidade());
-            dp.setCvv(novo.getCvv());
-            return ResponseEntity.ok(repository.save(dp));
-        }).orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<DadosPagamento> atualizar(Long id, DadosPagamento dados) {
+        return repository.findById(id)
+                .map(existing -> {
+                    existing.setNumeroCartao(dados.getNumeroCartao());
+                    existing.setNomeTitular(dados.getNomeTitular());
+                    existing.setValidade(dados.getValidade());
+                    existing.setCvv(dados.getCvv());
+                    DadosPagamento atualizado = repository.save(existing);
+                    return ResponseEntity.ok(atualizado);
+                })
+                .orElseThrow(() -> new RuntimeException("Pagamento não encontrado"));
     }
+
 }

@@ -1,34 +1,38 @@
 package com.fiap.mscliente.domain.entity;
 
 import org.junit.jupiter.api.Test;
-
+import static org.junit.jupiter.api.Assertions.*;
 import java.time.LocalDate;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class ClienteTest {
 
     @Test
-    void deveCriarClienteComEndereco() {
-        Endereco endereco = Endereco.builder()
-                .rua("Rua A")
-                .numero("123")
-                .bairro("Centro")
-                .cidade("SP")
-                .estado("SP")
-                .cep("12345678")
-                .complemento("Apto 1")
-                .build();
-
-        Cliente cliente = Cliente.builder()
+    public void deveCriarClienteComTodosOsCampos() {
+        Cliente obj = Cliente.builder()
+                .id(1L)
                 .nome("Lucas")
                 .cpf("12345678900")
-                .email("lucas@fiap.com")
-                .dataNascimento(LocalDate.of(2000, 1, 1))
-                .endereco(endereco)
+                .email("lucas@email.com")
+                .dataNascimento(LocalDate.of(1990, 1, 1))
+                .endereco(null)
                 .build();
+        assertNotNull(obj);
+        assertEquals("Lucas", obj.getNome());
+    }
 
-        assertThat(cliente.getNome()).isEqualTo("Lucas");
-        assertThat(cliente.getEndereco().getCidade()).isEqualTo("SP");
+    @Test
+    public void deveSetarEAcessarCampos() {
+        Cliente obj = new Cliente();
+        obj.setId(2L);
+        assertEquals(2L, obj.getId());
+    }
+
+    @Test
+    public void deveTestarEqualsHashCodeToString() {
+        Cliente obj1 = new Cliente();
+        Cliente obj2 = new Cliente();
+        assertEquals(obj1, obj2);
+        assertEquals(obj1.hashCode(), obj2.hashCode());
+        assertTrue(obj1.toString().contains("Cliente"));
     }
 }

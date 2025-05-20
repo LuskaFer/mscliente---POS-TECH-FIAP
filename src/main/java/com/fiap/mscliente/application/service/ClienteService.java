@@ -3,6 +3,9 @@ package com.fiap.mscliente.application.service;
 import com.fiap.mscliente.application.dto.ClienteDTO;
 import com.fiap.mscliente.domain.entity.Cliente;
 import com.fiap.mscliente.domain.repository.ClienteRepository;
+
+import jakarta.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,9 +38,9 @@ public class ClienteService {
     }
 
     public ResponseEntity<Cliente> buscarPorId(Long id) {
-        return repository.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        Cliente cliente = repository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Cliente não encontrado"));
+        return ResponseEntity.ok(cliente);
     }
 
     public ResponseEntity<Cliente> buscarPorCpf(String cpf) {

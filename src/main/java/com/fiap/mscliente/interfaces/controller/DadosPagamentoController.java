@@ -34,6 +34,7 @@ public class DadosPagamentoController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> excluir(@PathVariable Long id) {
-        return service.excluir(id);
+        return service.excluir(id); // ✅ correto
     }
+
 }

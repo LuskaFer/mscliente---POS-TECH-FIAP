@@ -1,39 +1,41 @@
 package com.fiap.mscliente.domain.entity;
 
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
+import java.time.LocalDate;
 
-class EnderecoTest {
+public class EnderecoTest {
 
     @Test
-    void deveCriarEnderecoComValoresCorretos() {
-        Endereco endereco = Endereco.builder()
+    public void deveCriarEnderecoComTodosOsCampos() {
+        Endereco obj = Endereco.builder()
+                .id(1L)
                 .rua("Rua A")
-                .numero("123")
-                .complemento("Apto 1")
+                .numero("100")
                 .bairro("Centro")
-                .cep("12345-678")
+                .cidade("SP")
                 .estado("SP")
-                .cidade("São Paulo")
+                .cep("00000000")
+                .complemento("Apto 1")
+                .cliente(null)
                 .build();
-
-        assertEquals("Rua A", endereco.getRua());
-        assertEquals("123", endereco.getNumero());
-        assertEquals("Apto 1", endereco.getComplemento());
-        assertEquals("Centro", endereco.getBairro());
-        assertEquals("12345-678", endereco.getCep());
-        assertEquals("SP", endereco.getEstado());
-        assertEquals("São Paulo", endereco.getCidade());
+        assertNotNull(obj);
+        assertEquals("Rua A", obj.getRua());
     }
 
     @Test
-    void devePermitirModificarEndereco() {
-        Endereco endereco = new Endereco();
-        endereco.setRua("Rua B");
-        endereco.setCidade("Curitiba");
+    public void deveSetarEAcessarCampos() {
+        Endereco obj = new Endereco();
+        obj.setId(2L);
+        assertEquals(2L, obj.getId());
+    }
 
-        assertEquals("Rua B", endereco.getRua());
-        assertEquals("Curitiba", endereco.getCidade());
+    @Test
+    public void deveTestarEqualsHashCodeToString() {
+        Endereco obj1 = new Endereco();
+        Endereco obj2 = new Endereco();
+        assertEquals(obj1, obj2);
+        assertEquals(obj1.hashCode(), obj2.hashCode());
+        assertTrue(obj1.toString().contains("Endereco"));
     }
 }

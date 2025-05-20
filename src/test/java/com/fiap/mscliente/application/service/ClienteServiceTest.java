@@ -1,23 +1,19 @@
 package com.fiap.mscliente.application.service;
 
-
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 import com.fiap.mscliente.domain.entity.Cliente;
 import com.fiap.mscliente.domain.repository.ClienteRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-@SpringBootTest
 @ActiveProfiles("test")
 class ClienteServiceTest {
 
@@ -54,22 +50,24 @@ class ClienteServiceTest {
 
     @Test
     void deveBuscarClientePorId() {
+        Long id = 1L;
         Cliente cliente = getCliente();
-        when(repository.findById(1L)).thenReturn(Optional.of(cliente));
+        when(repository.findById(id)).thenReturn(Optional.of(cliente));
 
-        ResponseEntity<Cliente> response = service.buscarPorId(1L);
+        ResponseEntity<Cliente> response = service.buscarPorId(id);
 
-        assertEquals(200, response.getStatusCodeValue());
-        assertEquals(cliente, response.getBody());
+        assertNotNull(response.getBody());
+        assertEquals("Lucas Godoy", response.getBody().getNome());
+        verify(repository).findById(id);
     }
 
     @Test
-    void deveRetornarNotFoundAoBuscarIdInexistente() {
-        when(repository.findById(2L)).thenReturn(Optional.empty());
+    void deveLancarExcecaoQuandoClienteNaoEncontrado() {
+        Long id = 999L;
+        when(repository.findById(id)).thenReturn(Optional.empty());
 
-        ResponseEntity<Cliente> response = service.buscarPorId(2L);
-
-        assertEquals(404, response.getStatusCodeValue());
+        assertThrows(EntityNotFoundException.class, () -> service.buscarPorId(id));
+        verify(repository).findById(id);
     }
 
     private Cliente getCliente() {
@@ -80,5 +78,17 @@ class ClienteServiceTest {
                 .email("lucas@fiap.com")
                 .dataNascimento(LocalDate.of(2000, 1, 1))
                 .build();
+    }
+
+    @Test
+    void deveTratarClienteComCamposNulos() {
+        Cliente cliente = new Cliente(); // Tudo null
+        when(repository.findByCpf(null)).thenReturn(Optional.empty());
+        when(repository.save(cliente)).thenReturn(cliente);
+
+        ResponseEntity<Cliente> response = service.salvar(cliente);
+
+        assertEquals(201, response.getStatusCodeValue());
+        assertNotNull(response.getBody());
     }
 }

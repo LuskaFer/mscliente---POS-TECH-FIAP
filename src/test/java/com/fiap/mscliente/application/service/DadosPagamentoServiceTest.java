@@ -6,11 +6,13 @@ import org.springframework.test.context.ActiveProfiles;
 import com.fiap.mscliente.domain.repository.DadosPagamentoRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
@@ -50,13 +52,21 @@ class DadosPagamentoServiceTest {
 
     @Test
     void deveExcluir() {
-        DadosPagamento dados = getDados();
+        DadosPagamento dados = DadosPagamento.builder()
+                .id(1L)
+                .numeroCartao("1234123412341234")
+                .nomeTitular("Titular")
+                .validade("12/30")
+                .cvv("123")
+                .clienteId(1L)
+                .build();
+
         when(repository.findById(1L)).thenReturn(Optional.of(dados));
 
         ResponseEntity<Void> response = service.excluir(1L);
 
-        assertEquals(204, response.getStatusCodeValue());
-        verify(repository, times(1)).deleteById(1L);
+        assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
+        verify(repository).delete(dados); // ✅ agora está certo!
     }
 
     @Test
@@ -84,4 +94,27 @@ class DadosPagamentoServiceTest {
                 .clienteId(1L)
                 .build();
     }
+
+    @Test
+    void deveLancarExcecaoAoAtualizarInexistente() {
+        DadosPagamento novo = getDados();
+        when(repository.findById(99L)).thenReturn(Optional.empty());
+
+        assertThrows(RuntimeException.class, () -> service.atualizar(99L, novo));
+    }
+
+    @Test
+    void deveLancarExcecaoAoExcluirInexistente() {
+        when(repository.findById(99L)).thenReturn(Optional.empty());
+
+        assertThrows(RuntimeException.class, () -> service.excluir(99L));
+    }
+
+    @Test
+    void deveTratarBuscaPorClienteIdInexistente() {
+        when(repository.findByClienteId(999L)).thenReturn(Optional.empty());
+
+        assertThrows(RuntimeException.class, () -> service.buscarPorClienteId(999L));
+    }
+
 }

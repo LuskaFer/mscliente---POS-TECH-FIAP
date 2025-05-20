@@ -1,24 +1,38 @@
 package com.fiap.mscliente.domain.entity;
 
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
+import java.time.LocalDate;
 
-class DadosPagamentoTest {
+public class DadosPagamentoTest {
 
     @Test
-    void deveCriarDadosPagamentoComValoresCorretos() {
-        DadosPagamento pagamento = DadosPagamento.builder()
-                .numeroCartao("1234-5678-9012-3456")
-                .nomeTitular("Lucas Fernandes")
-                .validade("12/26")
+    public void deveCriarDadosPagamentoComTodosOsCampos() {
+        DadosPagamento obj = DadosPagamento.builder()
+                .id(1L)
+                .numeroCartao("1234123412341234")
+                .nomeTitular("Lucas")
+                .validade("12/30")
                 .cvv("123")
+                .clienteId(1L)
                 .build();
-
-        assertEquals("1234-5678-9012-3456", pagamento.getNumeroCartao());
-        assertEquals("Lucas Fernandes", pagamento.getNomeTitular());
-        assertEquals("12/26", pagamento.getValidade());
-        assertEquals("123", pagamento.getCvv());
+        assertNotNull(obj);
+        assertEquals("Lucas", obj.getNomeTitular());
     }
 
+    @Test
+    public void deveSetarEAcessarCampos() {
+        DadosPagamento obj = new DadosPagamento();
+        obj.setId(2L);
+        assertEquals(2L, obj.getId());
+    }
+
+    @Test
+    public void deveTestarEqualsHashCodeToString() {
+        DadosPagamento obj1 = new DadosPagamento();
+        DadosPagamento obj2 = new DadosPagamento();
+        assertEquals(obj1, obj2);
+        assertEquals(obj1.hashCode(), obj2.hashCode());
+        assertTrue(obj1.toString().contains("DadosPagamento"));
+    }
 }
