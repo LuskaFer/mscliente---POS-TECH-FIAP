@@ -1,22 +1,19 @@
-package com.fiap.mscliente.application.dto;
+package com.fiap.mscliente.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
-public class DadosPagamentoDTO {
+@NoArgsConstructor
+public class DadosPagamento {
+    private Long id;
     private String numeroCartao;
     private String nomeTitular;
     private String validade;
     private String cvv;
+    private Long clienteId;
 }

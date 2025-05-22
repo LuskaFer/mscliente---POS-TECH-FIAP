@@ -1,15 +1,15 @@
-package com.fiap.mscliente.application.dto;
+package com.fiap.mscliente.domain;
 
 import lombok.*;
 
-@Data
 @Getter
 @Setter
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class EnderecoDTO {
+@NoArgsConstructor
+public class Endereco {
 
+    private Long id;
     private String rua;
     private String numero;
     private String bairro;

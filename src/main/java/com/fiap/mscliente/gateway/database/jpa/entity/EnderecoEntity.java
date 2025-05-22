@@ -1,15 +1,15 @@
-package com.fiap.mscliente.domain.entity;
+package com.fiap.mscliente.gateway.database.jpa.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
 
+@Entity
 @Getter
-@Data
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class Endereco {
+public class EnderecoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +24,6 @@ public class Endereco {
     private String complemento;
 
     @OneToOne
-    @JoinColumn(name = "cliente_id")
-    private Cliente cliente;
+    @JoinColumn(name = "cliente_id", referencedColumnName = "id")
+    private ClienteEntity cliente;
 }

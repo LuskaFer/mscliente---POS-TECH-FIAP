@@ -1,25 +1,19 @@
-package com.fiap.mscliente.domain.entity;
+package com.fiap.mscliente.dto;
 
-import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class DadosPagamento {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class DadosPagamentoDTO {
     private Long id;
-
     private String numeroCartao;
     private String nomeTitular;
     private String validade;
     private String cvv;
-
-    @Column(name = "cliente_id")
     private Long clienteId;
 }

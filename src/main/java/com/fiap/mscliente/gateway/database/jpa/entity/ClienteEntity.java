@@ -1,17 +1,18 @@
-package com.fiap.mscliente.domain.entity;
+package com.fiap.mscliente.gateway.database.jpa.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.Builder;
 
 import java.time.LocalDate;
 
-@Data
+@Entity
+@Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class Cliente {
+@Table(name = "clientes")
+public class ClienteEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +27,7 @@ public class Cliente {
 
     private LocalDate dataNascimento;
 
-    @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
-    private Endereco endereco = null;
+    private EnderecoEntity endereco = null;
 }
